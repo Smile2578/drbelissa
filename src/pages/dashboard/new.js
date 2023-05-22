@@ -2,6 +2,7 @@ import { ProtectedRoute } from '../../components/ProtectedRoute';
 import { useAuth } from '../../AuthContext';
 import PatientForm from '../../components/PatientForm';
 import { useRouter } from 'next/router';
+import Layout from '../../components/Layout';
 
 export default function NewPatient() {
   const { isLoggedIn } = useAuth();
@@ -34,9 +35,9 @@ export default function NewPatient() {
 
     return (
       <ProtectedRoute isLoggedIn={isLoggedIn}>
-        <div className="min-h-screen bg-gray-100">
+        <Layout>
           <PatientForm isNew onCancel={onCancelClick} onSubmit={savePatient} />
-        </div>
+        </Layout>
       </ProtectedRoute>
     );
 }

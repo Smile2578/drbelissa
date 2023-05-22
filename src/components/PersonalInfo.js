@@ -33,10 +33,14 @@ const PersonalInfo = ({ personalInfo, setPersonalInfo }) => {
   };
   
   return (
-    <div onSubmit={handleSubmit} className="space-y-4 bg-slate-50">
-      <div className="flex flex-wrap -mx-3 mb-6">
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label htmlFor="firstName" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+    <div onSubmit={handleSubmit} className="space-y-4 bg-slate-50 p-4 md:p-8">
+      <h1 className='text-xl font-bold text-blue-400 text-center'>Nouveau Patient</h1>
+      <h2 className="text-xl font-semibold text-gray-800 mb-4">
+          Informations Personnelles
+        </h2>
+      <div className="flex flex-wrap -mx-2 mb-4 md:mb-6">
+        <div className="w-full md:w-1/2 px-2 mb-4 md:mb-0">
+          <label htmlFor="firstName" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1">
             Prénom
           </label>
           <input
@@ -44,11 +48,11 @@ const PersonalInfo = ({ personalInfo, setPersonalInfo }) => {
             id="firstName"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-2 px-3 mb-1 leading-tight focus:outline-none focus:bg-white"
           />
         </div>
-        <div className="w-full md:w-1/2 px-3">
-          <label htmlFor="lastName" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+        <div className="w-full md:w-1/2 px-2">
+          <label htmlFor="lastName" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1">
             Nom de Famille
           </label>
           <input
@@ -56,13 +60,13 @@ const PersonalInfo = ({ personalInfo, setPersonalInfo }) => {
             id="lastName"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white"
           />
         </div>
       </div>
-      <div className="flex flex-wrap -mx-3 mb-6">
-        <div className="w-full px-3">
-          <label htmlFor="dateOfBirth" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+      <div className="flex flex-wrap -mx-2 mb-4">
+        <div className="w-full px-2">
+          <label htmlFor="dateOfBirth" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1">
             DDN
           </label>
           <input
@@ -70,13 +74,13 @@ const PersonalInfo = ({ personalInfo, setPersonalInfo }) => {
             id="dateOfBirth"
             value={dateOfBirth}
             onChange={(e) => setDateOfBirth(e.target.value)}
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white"
           />
         </div>
       </div>
-      <div className="flex flex-wrap -mx-3 mb-6">
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label htmlFor="email" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+      <div className="flex flex-wrap -mx-2 mb-4">
+        <div className="w-full md:w-1/2 px-2 mb-4 md:mb-0">
+          <label htmlFor="email" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1">
             Email
           </label>
           <input
@@ -84,11 +88,11 @@ const PersonalInfo = ({ personalInfo, setPersonalInfo }) => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-2 px-3 mb-1 leading-tight focus:outline-none focus:bg-white"
           />
        </div>
-        <div className="w-full md:w-1/2 px-3">
-          <label htmlFor="phone" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+        <div className="w-full md:w-1/2 px-2">
+          <label htmlFor="phone" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1">
             Téléphone
           </label>
           <input
@@ -96,9 +100,9 @@ const PersonalInfo = ({ personalInfo, setPersonalInfo }) => {
             id="phone"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white"
           />
-        </div>
+        </div>  
         </div>
         </div>
   );

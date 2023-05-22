@@ -15,13 +15,38 @@ const PatientSchema = new mongoose.Schema({
     phone: { type: String, default: null },
   },
   medicalInfo: {
-    radios: {
-      type: {
-        data: Buffer,
-        contentType: String,
+    radios: [
+      {
+        type: {
+          data: Buffer,
+          contentType: String,
+        },
+        default: null,
       },
-      default: null,
+    ],
+    empreintes: {
+      maxillaire: [
+        {
+          type: {
+            data: Buffer,
+            contentType: String,
+          },
+          default: null,
+        },
+      ],
+      mandibulaire: [
+        {
+          type: {
+            data: Buffer,
+            contentType: String,
+          },
+          default: null,
+        },
+      ],
+      checkmaxillaire: { type: Boolean, default: false },
+      checkmandibulaire: { type: Boolean, default: false },
     },
+
     pp: { type: String, default: null },
     qm: { type: String, default: null },
     dentalAndOrthoHistory: { type: String, default: null },
@@ -48,6 +73,12 @@ const PatientSchema = new mongoose.Schema({
       hypotonie_labiale_sup: { type: Boolean, default: false },
       hypotonie_labiale_inf: { type: Boolean, default: false },
      },
+    vestibule: {
+      large: { type: Boolean, default: false },
+      etroit: { type: Boolean, default: false },
+      retroverse: { type: Boolean, default: false },
+      linguoverse: { type: Boolean, default: false },
+    },
     atm: { type: String, default: null },
     hbd: { type: String, default: null },
     recessionGingivale: { type: String, default: null },
@@ -74,6 +105,9 @@ const PatientSchema = new mongoose.Schema({
       reeducation_deglution_infantile: { type: String, default: null },
       reeducation_linguale: { type: String, default: null },
       dentiste: { type: String, default: null },
+      frenectomie: { type: String, default: null },
+      greffe: { type: String, default: null },
+      implant: { type: String, default: null },
      },
   },
 });

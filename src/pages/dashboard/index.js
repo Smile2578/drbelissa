@@ -2,6 +2,7 @@ import { ProtectedRoute } from '../../components/ProtectedRoute';
 import { useAuth } from '../../AuthContext';
 import Dashboard from '../../components/Dashboard';
 import { motion } from 'framer-motion';
+import PatientList from '../../components/PatientList';
 
 export default function DashboardPage() {
   const { isLoggedIn } = useAuth();
@@ -25,7 +26,9 @@ export default function DashboardPage() {
           initial="hidden"
           animate="visible"
         >
-          <Dashboard />
+          <Dashboard>
+          <PatientList />
+          </Dashboard>
         </motion.div>
       </div>
     </ProtectedRoute>

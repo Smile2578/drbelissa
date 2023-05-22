@@ -30,36 +30,36 @@ const ExamenRadio = ({ examenRadio, setExamenRadio }) => {
     };
 
 
-  return (
-    <div onSubmit={handleSubmit} className='grid grid-flow-row'>
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">
+    return (
+      <div onSubmit={handleSubmit} className="space-y-4 bg-slate-50 p-4 md:p-8">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
           Examen Radio
         </h2>
         {/* Examen Radio - Inclusion */}
         <div className="mb-4">
-        <label value={inclusion} htmlFor="inclusion" className="block text-gray-700 font-bold mb-2">
-          Inclusion
-        </label>
-        <ToothSchema onTeethChange={setInclusion} initialTeeth={memoInclusion} />
-      </div>
-
+          <label value={inclusion} htmlFor="inclusion" className="block text-sm font-medium text-gray-700 mb-2">
+            Inclusion
+          </label>
+          <ToothSchema onTeethChange={setInclusion} initialTeeth={memoInclusion} />
+        </div>
+    
         {/* Examen Radio - AbsenceOrAgenesie */}
         <div className="mb-4">
-        <label value={absenceOrAgenesie} htmlFor="absenceOrAgenesie" className="block text-gray-700 font-bold mb-2">
-          Absence ou Agénésie
-        </label>
-        <ToothSchema onTeethChange={setAbsenceOrAgenesie} initialTeeth={memoAbsenceOrAgenesie} />
-      </div>
-
+          <label value={absenceOrAgenesie} htmlFor="absenceOrAgenesie" className="block text-sm font-medium text-gray-700 mb-2">
+            Absence ou Agénésie
+          </label>
+          <ToothSchema onTeethChange={setAbsenceOrAgenesie} initialTeeth={memoAbsenceOrAgenesie} />
+        </div>
+    
         {/* Examen Radio - Caries */}
         <div className="mb-4">
-        <label value={caries} htmlFor="caries" className="block text-gray-700 font-bold mb-2">
-          Caries
-        </label>
-        <ToothSchema onTeethChange={setCaries} initialTeeth={memoCaries} />
+          <label value={caries} htmlFor="caries" className="block text-sm font-medium text-gray-700 mb-2">
+            Caries
+          </label>
+          <ToothSchema onTeethChange={setCaries} initialTeeth={memoCaries} />
+        </div>
       </div>
-    </div>
-  );
+    );
 };
 
 export default ExamenRadio;

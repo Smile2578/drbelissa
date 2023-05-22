@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { ProtectedRoute } from '../../components/ProtectedRoute';
 import { useAuth } from '../../AuthContext';
 import PatientFormWrapper from '../../components/PatientFormWrapper';
+import Dashboard from '../../components/Dashboard';
 
 export default function EditPatient() {
   const { isLoggedIn } = useAuth();
@@ -63,7 +64,7 @@ export default function EditPatient() {
 
   return (
     <ProtectedRoute isLoggedIn={isLoggedIn}>
-      <div className="min-h-screen bg-gray-100">
+      <Dashboard>
         {isFormOpen && patientData && (
           <PatientFormWrapper
             patientData={patientData}
@@ -72,7 +73,7 @@ export default function EditPatient() {
             setIsFormOpen={setIsFormOpen} // Pass the setIsFormOpen function to the wrapper
           />
         )}
-      </div>
+      </Dashboard>
     </ProtectedRoute>
   );
 }

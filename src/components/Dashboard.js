@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { BiUser } from 'react-icons/bi';
 import { FiLogOut } from 'react-icons/fi';
@@ -7,50 +7,14 @@ import { useRouter } from 'next/router';
 import { useAuth } from '../AuthContext';
 import { motion } from 'framer-motion';
 
-export default function Dashboard() {
+export default function Dashboard({ children }) {
   const router = useRouter();
   const signOut  = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isFormOpen, setIsFormOpen] = useState(false);
-
 
   const handleSignOut = async () => {
     router.push('/');
   };
-
-  const [currentComponent, setCurrentComponent] = useState(null);
-  const [selectedPatientId, setSelectedPatientId] = useState(null);
-
-  useEffect(() => {
-    const loadComponent = async () => {
-      switch (router.pathname) {
-        case '/dashboard/new':
-          const { default: PatientForm } = await import('./PatientForm');
-          setCurrentComponent(<PatientForm setIsFormOpen={setIsFormOpen} />);
-          setIsFormOpen(true);
-          break;
-        case '/dashboard/[id]':
-          const { default: PatientFormWrapper } = await import('./PatientFormWrapper');
-          const { id } = router.query;
-          setSelectedPatientId(id);
-          setCurrentComponent(
-            <PatientFormWrapper 
-              patientId={selectedPatientId} 
-              onCancel={() => { setSelectedPatientId(null); setIsFormOpen(false); }}
-              setIsFormOpen={setIsFormOpen} 
-            />
-          );
-          setIsFormOpen(true);
-          break;
-        case '/dashboard':
-        default:
-          const { default: PatientList } = await import('./PatientList');
-          setCurrentComponent(<PatientList />);
-          break;
-      }
-    };
-    loadComponent();
-  }, [router.pathname, selectedPatientId]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -101,14 +65,13 @@ export default function Dashboard() {
         <div className="text-center mb-8">
           <Link href="/dashboard/new">
             <button
-              onClick={() => setIsFormOpen(true)}
               className="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mb-8 hover:bg-blue-700 focus:outline-none shadow-md transition duration-150 ease-in-out"
             >
               Nouveau Patient
             </button>
           </Link>
         </div>
-        {currentComponent}
+        {children}
       </motion.div>
       {isMenuOpen && (
         <div className="md:hidden">
@@ -126,3 +89,7 @@ export default function Dashboard() {
     </div>
   );
 }
+
+
+
+
