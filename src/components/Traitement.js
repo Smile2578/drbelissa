@@ -62,7 +62,7 @@ const Traitement = ({ traitementState, setTraitementState }) => {
         <textarea
           value={soinAPrevoir}
           onChange={(e) => setSoinAPrevoir(e.target.value)}
-          className="block w-full border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="block w-full border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
           placeholder="Soin à prévoir"
         />
       </div>
@@ -73,7 +73,7 @@ const Traitement = ({ traitementState, setTraitementState }) => {
         <select
           value={typeDeTraitement}
           onChange={(e) => setTypeDeTraitement(e.target.value)}
-          className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+          className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md text-black"
         >
           <option value="">Type de Traitement</option>
           <option value="Express">Express</option>
@@ -89,7 +89,7 @@ const Traitement = ({ traitementState, setTraitementState }) => {
         <select
           value={duree}
           onChange={(e) => setDuree(e.target.value)}
-          className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+          className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md text-black"
         >
           <option value="">Durée</option>
           <option value="2-4 mois">2-4 mois</option>
@@ -107,7 +107,7 @@ const Traitement = ({ traitementState, setTraitementState }) => {
         <textarea
           value={planDeTraitement}
           onChange={(e) => setPlanDeTraitement(e.target.value)}
-          className="block w-full border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="block text-black w-full border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           placeholder="Plan de Traitement"
         />
       </div>
