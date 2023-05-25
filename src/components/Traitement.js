@@ -3,29 +3,14 @@ import React from 'react';
 const Traitement = ({ traitementState, setTraitementState }) => {
   const { soinAPrevoir, typeDeTraitement, duree, planDeTraitement, accessoires, consignes } = traitementState;
 
-
-  const setSoinAPrevoir = (value) => {
-    setTraitementState({ ...traitementState, soinAPrevoir: value });
-  };
-  const setTypeDeTraitement = (value) => {
-    setTraitementState({ ...traitementState, typeDeTraitement: value });
-  };
-  const setDuree = (value) => {
-    setTraitementState({ ...traitementState, duree: value });
-  };
-  const setPlanDeTraitement = (value) => {
-    setTraitementState({ ...traitementState, planDeTraitement: value });
-  };
-  const setAccessoires = (value) => {
-    setTraitementState({ ...traitementState, accessoires: value });
-  };
-  const setConsignes = (value) => {
-    setTraitementState({ ...traitementState, consignes: value });
-  };
+  const setSoinAPrevoir = (value) => setTraitementState({ ...traitementState, soinAPrevoir: value });
+  const setTypeDeTraitement = (value) => setTraitementState({ ...traitementState, typeDeTraitement: value });
+  const setDuree = (value) => setTraitementState({ ...traitementState, duree: value });
+  const setPlanDeTraitement = (value) => setTraitementState({ ...traitementState, planDeTraitement: value });
+  const setAccessoires = (value) => setTraitementState({ ...traitementState, accessoires: value });
+  const setConsignes = (value) => setTraitementState({ ...traitementState, consignes: value });
   
-  
-
-    const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setTraitementState({
       soinAPrevoir: '',
@@ -53,7 +38,7 @@ const Traitement = ({ traitementState, setTraitementState }) => {
 
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 bg-slate-50 p-6 md:p-8 lg:p-10 rounded-lg">
+    <div onSubmit={handleSubmit} className="space-y-4 bg-slate-50 p-6 md:p-8 lg:p-10 rounded-lg">
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">Traitement Orthodontique</h2>
       
       {/* Soin à prévoir */}
@@ -262,7 +247,7 @@ const Traitement = ({ traitementState, setTraitementState }) => {
                 </label>
               </div>
             </div>        
-    </form>
+    </div>
   );
 };
 

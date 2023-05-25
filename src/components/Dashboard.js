@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { BiUser } from 'react-icons/bi';
 import { FiLogOut } from 'react-icons/fi';
+import { AiOutlineHome } from 'react-icons/ai';
 import { HiMenu } from 'react-icons/hi';
 import { useRouter } from 'next/router';
 import { useAuth } from '../AuthContext';
@@ -15,6 +16,10 @@ export default function Dashboard({ children }) {
   const handleSignOut = async () => {
     router.push('/');
   };
+
+  const handleNavigateHome = () => {
+    router.push('/dashboard');
+};
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -30,6 +35,16 @@ export default function Dashboard({ children }) {
             </div>
             <div className="hidden md:block">
               <div className="flex items-center">
+                <div className="ml-3 relative">
+    <button
+        onClick={handleNavigateHome}
+        className="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+        id="home-menu"
+        aria-haspopup="true"
+    >
+        <AiOutlineHome className="h-6 w-6" aria-hidden="true" />
+    </button>
+</div>
                 <div className="ml-3 relative">
                   <div>
                     <button

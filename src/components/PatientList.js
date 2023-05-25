@@ -5,6 +5,12 @@ const PatientList = () => {
   const [patients, setPatients] = useState([]);
   const [orderBy, setOrderBy] = useState('personalInfo.lastName');
   const [ascending, setAscending] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+
+const handleSearchChange = (event) => {
+  setSearchTerm(event.target.value);
+};
+
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -51,7 +57,12 @@ const PatientList = () => {
     return 0;
   };
 
-  const sortedPatients = Array.isArray(patients) ? patients.sort(sortPatients) : [];
+  const filteredPatients = patients.filter(patient =>
+    (patient.personalInfo.firstName.toLowerCase() + ' ' + patient.personalInfo.lastName.toLowerCase()).includes(searchTerm.toLowerCase())
+  );
+
+  const sortedPatients = Array.isArray(filteredPatients) ? filteredPatients.sort(sortPatients) : [];
+
 
   const handleDeletePatient = async (patientId) => {
     try {
@@ -69,10 +80,17 @@ const PatientList = () => {
   
   return (
     <div className="bg-white shadow-md rounded p-4">
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={handleSearchChange}
+        placeholder="Rechercher un patient"
+        className="w-full px-3 py-2 mb-4 text-black placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+      />
       <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-100">
+        <thead className="bg-gray-200">
           <tr>
-            <th className="cursor-pointer py-2 px-4 text-left font-semibold" onClick={() => handleSort('personalInfo.firstName')}>
+            <th className="cursor-pointer py-2 px-4 text-left font-semibold" onClick={() => handleSort('personalInfo.lastName')}>
               Prénom et Nom
             </th>
             <th className="cursor-pointer py-2 px-4 text-left font-semibold" onClick={() => handleSort('personalInfo.dateOfBirth')}>
