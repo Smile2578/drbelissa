@@ -35,7 +35,7 @@ export default function EditPatient() {
   }, [id]);
 
   const handleCancel = () => {
-    setIsFormOpen(false); // Close the form on cancel
+    setIsFormOpen(false); 
     router.push('/dashboard');
   };
 
@@ -56,11 +56,15 @@ export default function EditPatient() {
       // Refresh the patient data
       setPatientData(updatedData);
       setIsFormOpen(false);
-      router.push('/dashboard') // Close the form on update
     } catch (error) {
       console.error('Error updating patient:', error.message);
     }
   };
+  useEffect(() => {
+    if (!isFormOpen) {
+      router.push('/dashboard');
+    }
+  }, [isFormOpen]);
 
   return (
     <ProtectedRoute isLoggedIn={isLoggedIn}>
@@ -70,7 +74,7 @@ export default function EditPatient() {
             patientData={patientData}
             onSubmit={handleUpdate}
             onCancel={handleCancel}
-            setIsFormOpen={setIsFormOpen} // Pass the setIsFormOpen function to the wrapper
+            setIsFormOpen={setIsFormOpen} 
           />
         )}
       </Dashboard>

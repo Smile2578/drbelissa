@@ -16,6 +16,7 @@ export default function NewPatient() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(patient),
+            router.push(`/dashboard`),
         });
         if (!response.ok) {
             throw new Error('Error creating patient');
