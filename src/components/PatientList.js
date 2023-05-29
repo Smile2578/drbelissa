@@ -29,7 +29,6 @@ const PatientList = () => {
   }
 
   const afterOpenModal = () => {
-    // references are now sync'd and can be accessed.
     subtitle.style.color = '#f00';
   }
 
@@ -38,11 +37,21 @@ const handleSearchChange = (event) => {
 };
 
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-  };
+const formatDate = (date) => {
+  if (!date) {
+    return "Pas de date";
+  }
   
+  const parsedDate = new Date(date);
+  
+  const day = (parsedDate.getUTCDate()+ 1).toString().padStart(2, "0");
+  const month = parsedDate.getUTCMonth().toString().padStart(2, "0"); // getUTCMonth() is zero-indexed
+  const year = parsedDate.getUTCFullYear();
+
+  return `${day}/${month}/${year}`;
+};
+
+
   useEffect(() => {
     fetchPatients();
   }, []);

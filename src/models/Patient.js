@@ -6,11 +6,24 @@ const ToothSchema = new mongoose.Schema({
   isSelected: { type: Boolean, default: false },
 });
 
+const setDateOfBirth = function (value) {
+  if (value) {
+    const [day, month, year] = value.split('/');
+    return new Date(year, month, day);
+  }
+  return null;
+};
+
+
 const PatientSchema = new mongoose.Schema({
   personalInfo: {
     firstName: { type: String, default: null },
     lastName: { type: String, default: null },
-    dateOfBirth: { type: String, default: null },
+    dateOfBirth: {
+      type: Date,
+      default: null,
+      set: setDateOfBirth,
+    },
     email: { type: String, default: null },
     phone: { type: String, default: null },
   },
@@ -100,14 +113,14 @@ const PatientSchema = new mongoose.Schema({
       elastiques: { type: Boolean, default: false },
     },
     consignes: { 
-      parodontie: { type: String, default: null },
-      chirurgie: { type: String, default: null },
-      reeducation_deglution_infantile: { type: String, default: null },
-      reeducation_linguale: { type: String, default: null },
-      dentiste: { type: String, default: null },
-      frenectomie: { type: String, default: null },
-      greffe: { type: String, default: null },
-      implant: { type: String, default: null },
+      parodontie: { type: Boolean, default: null },
+      chirurgie: { type: Boolean, default: null },
+      reeducation_deglution_infantile: { type: Boolean, default: null },
+      reeducation_linguale: { type: Boolean, default: null },
+      dentiste: { type: Boolean, default: null },
+      frenectomie: { type: Boolean, default: null },
+      greffe: { type: Boolean, default: null },
+      implant: { type: Boolean, default: null },
      },
   },
 });

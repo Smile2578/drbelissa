@@ -14,6 +14,7 @@ const PersonalInfo = ({ personalInfo, setPersonalInfo }) => {
   const setDateOfBirth = (value) => {
     setPersonalInfo({ ...personalInfo, dateOfBirth: value });
   };
+
   const setEmail = (value) => {
     setPersonalInfo({ ...personalInfo, email: value });
   };
