@@ -31,7 +31,7 @@ export default function LoginForm({ onLogin }) {
   return (
     <motion.form
       onSubmit={handleSubmit}
-      className="space-y-4 bg-gray-100 p-8 rounded w-full sm:w-96"
+      className="space-y-4 backdrop-blur-md p-8 rounded w-full sm:w-96 bg-gray-100"
       initial="hidden"
       animate="visible"
       transition={{ duration: 0.5 }}
@@ -50,7 +50,7 @@ export default function LoginForm({ onLogin }) {
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="w-full text-black p-2 pl-10 border border-gray-300 rounded"
+            className="w-full text-black p-2 pl-10 border border-gray-200 rounded"
             placeholder="Utilisateur"
           />
           <UserIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-6 w-6 text-gray-400" />
@@ -67,7 +67,7 @@ export default function LoginForm({ onLogin }) {
             value={password}
             autoComplete="current-password"
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-2 pl-10 text-black border border-gray-300 rounded"
+            className="w-full p-2 pl-10 text-black border border-gray-200 rounded"
             placeholder="Mot de Passe"
           />
           <LockClosedIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-6 w-6 text-gray-400" />
