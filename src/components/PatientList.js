@@ -1,11 +1,37 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Modal from 'react-modal';
+import { FaTrash } from 'react-icons/fa';
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css';
+
+
 
 const PatientList = () => {
   const [patients, setPatients] = useState([]);
   const [orderBy, setOrderBy] = useState('personalInfo.lastName');
   const [ascending, setAscending] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [selectedPatient, setSelectedPatient] = useState(null);
+
+  Modal.setAppElement('#__next');
+
+
+  const openModal = (patientId) => {
+    setIsOpen(true);
+    setSelectedPatient(patientId);
+  }
+
+  const closeModal = () => {
+    setIsOpen(false);
+    setSelectedPatient(null);
+  }
+
+  const afterOpenModal = () => {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
 
 const handleSearchChange = (event) => {
   setSearchTerm(event.target.value);
@@ -73,9 +99,26 @@ const handleSearchChange = (event) => {
         throw new Error('Error deleting patient');
       }
       fetchPatients();
+      closeModal();
     } catch (error) {
       console.error('Error deleting patient:', error);
     }
+  };
+
+  const submit = (patientId) => {
+    confirmAlert({
+      title: 'Confirmez la suppression',
+      message: 'Êtes-vous sûr de vouloir supprimer ce patient ?',
+      buttons: [
+        {
+          label: 'Oui',
+          onClick: () => handleDeletePatient(patientId)
+        },
+        {
+          label: 'Non',
+        }
+      ]
+    });
   };
   
   return (
@@ -121,21 +164,10 @@ const handleSearchChange = (event) => {
               <td className="py-2 px-4">{patient.traitementState.typeDeTraitement}</td>
               <td className="py-2 px-4">{patient.traitementState.duree}</td>
               <td className="py-2 px-4">
-                <button className="text-red-500 hover:text-red-700" onClick={() => handleDeletePatient(patient._id)}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                    <path
-                      fillRule="evenodd"
-                      d="M9 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm4-2a1 1 0 1 0-2 0v4a1 1 0 0 0 2 0V8zm-4 9a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-2a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"
-                      clipRule="evenodd"
-                    />
-                 </svg>
-                 </button>
-            </td>
+              <button className="text-red-500 hover:text-red-700" onClick={() => submit(patient._id)}>
+                <FaTrash className="h-5 w-5"/>
+              </button>
+              </td>
           </tr>
         ))}
       </tbody>
