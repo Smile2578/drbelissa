@@ -19,11 +19,7 @@ const PatientSchema = new mongoose.Schema({
   personalInfo: {
     firstName: { type: String, default: null },
     lastName: { type: String, default: null },
-    dateOfBirth: {
-      type: Date,
-      default: null,
-      set: setDateOfBirth,
-    },
+    dateOfBirth: { type: String, default: null },
     email: { type: String, default: null },
     phone: { type: String, default: null },
   },
@@ -122,6 +118,8 @@ const PatientSchema = new mongoose.Schema({
       greffe: { type: Boolean, default: null },
       implant: { type: Boolean, default: null },
      },
+     encours: { type: Boolean, default: false },
+     contention: { type: Boolean, default: false },
   },
 });
 

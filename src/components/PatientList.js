@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Modal from 'react-modal';
-import { FaTrash } from 'react-icons/fa';
+import { FaCheck, FaTrash } from 'react-icons/fa';
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
@@ -36,20 +36,6 @@ const handleSearchChange = (event) => {
   setSearchTerm(event.target.value);
 };
 
-
-const formatDate = (date) => {
-  if (!date) {
-    return "Pas de date";
-  }
-  
-  const parsedDate = new Date(date);
-  
-  const day = parsedDate.getUTCDate().toString().padStart(2, "0");
-  const month = parsedDate.getUTCMonth().toString().padStart(2, "0");
-  const year = parsedDate.getUTCFullYear();
-
-  return `${day}/${month}/${year}`;
-};
 
 
   useEffect(() => {
@@ -145,9 +131,6 @@ const formatDate = (date) => {
             <th className="cursor-pointer py-2 px-4 text-left font-semibold" onClick={() => handleSort('personalInfo.lastName')}>
               Prénom et Nom
             </th>
-            <th className="cursor-pointer py-2 px-4 text-left font-semibold" onClick={() => handleSort('personalInfo.dateOfBirth')}>
-              Date de naissance
-            </th>
             <th className="cursor-pointer py-2 px-4 text-left font-semibold" onClick={() => handleSort('examenIntraOral.classeSquelettique')}>
               Classe Squelettique
             </th>
@@ -156,6 +139,12 @@ const formatDate = (date) => {
             </th>
             <th className="cursor-pointer py-2 px-4 text-left font-semibold" onClick={() => handleSort('traitementState.duree')}>
               Durée
+            </th>
+            <th className="cursor-pointer py-2 px-4 text-left font-semibold" onClick={() => handleSort('traitementState.encours')}>
+              En Cours
+            </th>
+            <th className="cursor-pointer py-2 px-4 text-left font-semibold" onClick={() => handleSort('traitementState.contention')}>
+              Contention à Faire
             </th>
             <th className="py-2 px-4"></th>
           </tr>
@@ -168,15 +157,26 @@ const formatDate = (date) => {
                 <a>{patient.personalInfo.firstName} {patient.personalInfo.lastName}</a>
               </Link>
             </td>
-              <td className="py-2 px-4">{formatDate(patient.personalInfo.dateOfBirth)}</td>
               <td className="py-2 px-4">{patient.examenIntraOral.classeSquelettique}</td>
               <td className="py-2 px-4">{patient.traitementState.typeDeTraitement}</td>
               <td className="py-2 px-4">{patient.traitementState.duree}</td>
               <td className="py-2 px-4">
-              <button className="text-red-500 hover:text-red-700" onClick={() => submit(patient._id)}>
-                <FaTrash className="h-5 w-5"/>
-              </button>
-              </td>
+  <div className="flex items-center justify-center">
+    {patient.traitementState.encours ? <FaCheck className="text-green-500" /> : ''} 
+  </div>
+</td>
+<td className="py-2 px-4">
+  <div className="flex items-center justify-center">
+    {patient.traitementState.contention ? <FaCheck className="text-green-500" /> : ''}
+  </div>
+</td>
+<td className="py-2 px-4">
+  <div className="flex items-center justify-center">
+    <button className="text-red-500 hover:text-red-700" onClick={() => submit(patient._id)}>
+      <FaTrash className="h-5 w-5"/>
+    </button>
+  </div>
+</td>
           </tr>
         ))}
       </tbody>

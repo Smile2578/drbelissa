@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Traitement = ({ traitementState, setTraitementState }) => {
-  const { soinAPrevoir, typeDeTraitement, duree, planDeTraitement, accessoires, consignes } = traitementState;
+  const { soinAPrevoir, typeDeTraitement, duree, planDeTraitement, accessoires, consignes, encours, contention } = traitementState;
 
   const setSoinAPrevoir = (value) => setTraitementState({ ...traitementState, soinAPrevoir: value });
   const setTypeDeTraitement = (value) => setTraitementState({ ...traitementState, typeDeTraitement: value });
@@ -9,7 +9,17 @@ const Traitement = ({ traitementState, setTraitementState }) => {
   const setPlanDeTraitement = (value) => setTraitementState({ ...traitementState, planDeTraitement: value });
   const setAccessoires = (value) => setTraitementState({ ...traitementState, accessoires: value });
   const setConsignes = (value) => setTraitementState({ ...traitementState, consignes: value });
+  const setEncours = (value) => setTraitementState({ ...traitementState, encours: value });
+  const setContention = (value) => setTraitementState({ ...traitementState, contention: value });
+
+  const handleEncoursChange = (e) => {
+    setTraitementState({ ...traitementState, encours: e.target.checked });
+  };
   
+  const handleContentionChange = (e) => {
+    setTraitementState({ ...traitementState, contention: e.target.checked });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setTraitementState({
@@ -32,7 +42,9 @@ const Traitement = ({ traitementState, setTraitementState }) => {
         implant: false,
         greffe: false,
         frenectomie: false,
-      }
+      },
+      encours: '',
+      contention: '',
     });
   };
 
@@ -246,8 +258,35 @@ const Traitement = ({ traitementState, setTraitementState }) => {
                   <span className="ml-2 text-sm">Dentiste</span>
                 </label>
               </div>
-            </div>        
+            </div>
+                {/* Traitement En Cours */}
+      <div>
+        <label className="inline-flex items-center text-gray-700">
+          <input
+            type="checkbox"
+            className="form-checkbox text-indigo-600"
+            checked={encours}
+            onChange={handleEncoursChange}
+          />
+          <span className="ml-2">Traitement en Cours</span>
+        </label>
+      </div>
+    
+
+    {/* Contention */}
+    <div>
+      <label className="inline-flex items-center text-gray-700">
+        <input
+          type="checkbox"
+          className="form-checkbox text-indigo-600"
+          checked={contention}
+          onChange={handleContentionChange}
+        />
+        <span className="ml-2">Contention à Faire</span>
+      </label>
     </div>
+  </div>
+
   );
 };
 

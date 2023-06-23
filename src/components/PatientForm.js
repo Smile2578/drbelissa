@@ -83,19 +83,19 @@ const PatientForm = ({ onSubmit, onCancel, personalInfo: initialPersonalInfo, me
   };
 
 
-return (
-  <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-    <h2 className="font-bold text-2xl mb-4">{initialPersonalInfo ? 'Modifier le patient' : 'Création d\'un nouveau patient'}</h2>
-    <form className="space-y-4" onSubmit={handleSubmit}>
-      <PersonalInfo personalInfo={personalInfo} setPersonalInfo={setPersonalInfo} />
-      <MedicalInfo medicalInfo={medicalInfo} setMedicalInfo={setMedicalInfo} />
-      <ExamenRadio examenRadio={examenRadio} setExamenRadio={setExamenRadio} />
-      <ExamenIntra examenIntraOral={examenIntraOral} setExamenIntraOral={setExamenIntraOral} />
-      <Traitement traitementState={traitementState} setTraitementState={setTraitementState} />
-      <FormButtons showForm={setShowForm} onCancel={handleCancel} />
-    </form>
-  </div>
-);
+  return (
+    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <h2 className="font-bold text-2xl mb-4">{initialPersonalInfo ? 'Modifier le patient' : 'Création d\'un nouveau patient'}</h2>
+      <form className="space-y-4" onSubmit={handleSubmit}>
+        <PersonalInfo personalInfo={personalInfo} setPersonalInfo={setPersonalInfo} />
+        <MedicalInfo medicalInfo={medicalInfo} setMedicalInfo={setMedicalInfo} />
+        <ExamenRadio examenRadio={examenRadio} setExamenRadio={setExamenRadio} />
+        <ExamenIntra examenIntraOral={examenIntraOral} setExamenIntraOral={setExamenIntraOral} />
+        <Traitement traitementState={traitementState} setTraitementState={setTraitementState} />
+        <FormButtons showForm={setShowForm} onCancel={handleCancel} />
+      </form>
+    </div>
+  );
 
   
 };
