@@ -15,6 +15,7 @@ const PatientList = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState(null);
+  const [onlyShowEnCours, setOnlyShowEnCours] = useState(false);
 
   Modal.setAppElement('#__next');
 
@@ -79,9 +80,10 @@ const handleSearchChange = (event) => {
     return 0;
   };
 
-  const filteredPatients = patients.filter(patient =>
-    (patient.personalInfo.firstName.toLowerCase() + ' ' + patient.personalInfo.lastName.toLowerCase()).includes(searchTerm.toLowerCase())
-  );
+ const filteredPatients = patients.filter(patient => 
+  (patient.personalInfo.firstName.toLowerCase() + ' ' + patient.personalInfo.lastName.toLowerCase()).includes(searchTerm.toLowerCase()) &&
+  (!onlyShowEnCours || patient.traitementState.encours)
+);
 
   const sortedPatients = Array.isArray(filteredPatients) ? filteredPatients.sort(sortPatients) : [];
 
@@ -142,7 +144,9 @@ const handleSearchChange = (event) => {
               Durée
             </th>
             <th className="cursor-pointer py-2 px-4 text-left font-semibold" onClick={() => handleSort('traitementState.encours')}>
-              En Cours
+              <button onClick={() => setOnlyShowEnCours(!onlyShowEnCours)}>
+              {onlyShowEnCours ? "Voir Tous" : "En Cours"}
+              </button>
             </th>
             <th className="cursor-pointer py-2 px-4 text-left font-semibold">
               Progression du Traitement
