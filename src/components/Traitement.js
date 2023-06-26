@@ -303,7 +303,7 @@ const Traitement = ({ traitementState, setTraitementState }) => {
 
       {/* Nombre d'aligneurs */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">Nombre d'aligneurs</label>
+        <label className="block text-sm font-medium text-gray-700 mb-2">Nombre d&apos;aligneurs</label>
         <input
           type="number"
           value={nombreDAligneurs}

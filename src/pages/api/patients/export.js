@@ -2,7 +2,7 @@ import { connectToDatabase } from '../../../util/mongodb';
 import { Parser } from 'json2csv';
 import { Patient } from '../../../models/Patient'; 
 
-export default async (req, res) => {
+const exportPatients = async (req, res) => {
   if (req.method === 'GET') {
     try {
       await connectToDatabase();
@@ -42,3 +42,6 @@ const formatDate = (date) => {
 const pad = (num) => {
   return num < 10 ? '0' + num : num;
 };
+
+
+export default exportPatients;

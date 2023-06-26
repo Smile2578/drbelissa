@@ -26,11 +26,11 @@ const ToothSchema = ({ onTeethChange, initialTeeth = [] }) => {
   useEffect(() => {
     const prevTeeth = JSON.stringify(initialTeeth);
     const currTeeth = JSON.stringify(selectedTeeth);
-
+  
     if (prevTeeth !== currTeeth) {
       onTeethChange(selectedTeeth);
     }
-  }, [selectedTeeth, onTeethChange, handleTeethSelection]);
+  }, [selectedTeeth, onTeethChange]);
 
 
   return (
