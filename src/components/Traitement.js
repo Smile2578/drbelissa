@@ -1,7 +1,8 @@
 import React from 'react';
+import { useState } from 'react';
 
 const Traitement = ({ traitementState, setTraitementState }) => {
-  const { soinAPrevoir, typeDeTraitement, duree, planDeTraitement, accessoires, consignes, encours, contention } = traitementState;
+  const { soinAPrevoir, typeDeTraitement, duree, planDeTraitement, accessoires, consignes, encours, contention, aligneurRDV, nombreDAligneurs, aligneurActuel, jourDePort } = traitementState;
 
   const setSoinAPrevoir = (value) => setTraitementState({ ...traitementState, soinAPrevoir: value });
   const setTypeDeTraitement = (value) => setTraitementState({ ...traitementState, typeDeTraitement: value });
@@ -11,29 +12,54 @@ const Traitement = ({ traitementState, setTraitementState }) => {
   const setConsignes = (value) => setTraitementState({ ...traitementState, consignes: value });
   const setEncours = (value) => setTraitementState({ ...traitementState, encours: value });
   const setContention = (value) => setTraitementState({ ...traitementState, contention: value });
+  const setnombreDAligneurs = (value) => setTraitementState({ ...traitementState, nombreDAligneurs: value });
+  const setAligneurActuel = (value) => setTraitementState({ ...traitementState, aligneurActuel: value });
+  const setJourDePort = (value) => setTraitementState({ ...traitementState, jourDePort: value });
+  const setAligneurRDV = (value) => setTraitementState({ ...traitementState, aligneurRDV: value });
+
+  useState({
+    soinAPrevoir: '',
+    typeDeTraitement: '',
+    duree: '',
+    planDeTraitement: '',
+    accessoires: {},
+    consignes: {},
+    encours: false, 
+    contention: false, 
+    aligneurRDV: '', 
+    nombreDAligneurs: '',
+    aligneurActuel: '',
+    jourDePort: '',
+  });
+
 
   const handleEncoursChange = (e) => {
-    setTraitementState({ ...traitementState, encours: e.target.checked });
+    setTraitementState(prevState => ({...prevState, encours: e.target.checked}));
   };
   
   const handleContentionChange = (e) => {
-    setTraitementState({ ...traitementState, contention: e.target.checked });
+    setTraitementState(prevState => ({...prevState, contention: e.target.checked}));
   };
 
+  
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    setTraitementState({
+    setTraitementState(prevState => ({
+      ...prevState,
       soinAPrevoir: '',
       typeDeTraitement: '',
       duree: '',
       planDeTraitement: '',
       accessoires: {
+        ...prevState.accessoires,
         taquets: false,
         stripping: false,
         vivera: false,
         elastiques: false,
       },
       consignes: {
+        ...prevState.consignes,
         parodontie: false,
         chirurgie: false,
         reeducation_linguale: false,
@@ -44,10 +70,13 @@ const Traitement = ({ traitementState, setTraitementState }) => {
         frenectomie: false,
       },
       encours: '',
+      aligneurRDV: '',
       contention: '',
-    });
+      nombreDAligneurs: '',
+      aligneurActuel: '',
+      jourDePort: '',
+    }));
   };
-
 
   return (
     <div onSubmit={handleSubmit} className="space-y-4 bg-slate-50 p-6 md:p-8 lg:p-10 rounded-lg">
@@ -271,7 +300,55 @@ const Traitement = ({ traitementState, setTraitementState }) => {
           <span className="ml-2">Traitement en Cours</span>
         </label>
       </div>
-    
+
+      {/* Nombre d'aligneurs */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">Nombre d'aligneurs</label>
+        <input
+          type="number"
+          value={nombreDAligneurs}
+          onChange={(e) => setnombreDAligneurs(e.target.value)}
+          className="block w-full border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
+          placeholder="Nombre d'aligneurs"
+        />
+      </div>
+
+      {/* Aligneur Actuel */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">Aligneur Actuel</label>
+        <input
+          type="number"
+          value={aligneurActuel}
+          onChange={(e) => setAligneurActuel(e.target.value)}
+          className="block w-full border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
+          placeholder="Aligneur Actuel"
+        />
+      </div>
+
+      {/* Aligneur RDV */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">Aligneur RDV</label>
+        <input
+          type="number"
+          value={aligneurRDV || ''}
+          onChange={(e) => setAligneurRDV(e.target.value)}
+          className="block w-full border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
+          placeholder="Aligneur RDV"
+        />
+      </div>
+
+      {/* Jour de Port */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">Jours de Port</label>
+        <input
+          type="number"
+          value={jourDePort}
+          onChange={(e) => setJourDePort(e.target.value)}
+          className="block w-full border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
+          placeholder="Jours de Port"
+        />
+      </div>
+
 
     {/* Contention */}
     <div>

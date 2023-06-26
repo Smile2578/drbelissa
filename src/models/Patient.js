@@ -120,6 +120,10 @@ const PatientSchema = new mongoose.Schema({
      },
      encours: { type: Boolean, default: false },
      contention: { type: Boolean, default: false },
+     aligneurRDV: { type: Number, default: null },
+     nombreDAligneurs: { type: Number, default: null }, 
+     aligneurActuel: { type: Number, default: null }, 
+     jourDePort: { type: Number, default: null },
   },
 });
 
@@ -131,4 +135,7 @@ PatientSchema.pre('save', function (next) {
   next();
 });
 
+const Patient = mongoose.models.Patient || mongoose.model('Patient', PatientSchema);
+
+export { Patient };
 export default PatientSchema;

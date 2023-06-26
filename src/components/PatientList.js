@@ -4,13 +4,14 @@ import Modal from 'react-modal';
 import { FaCheck, FaTrash } from 'react-icons/fa';
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import ProgressPatient from './ProgressPatient';
 
 
 
 const PatientList = () => {
   const [patients, setPatients] = useState([]);
-  const [orderBy, setOrderBy] = useState('personalInfo.lastName');
-  const [ascending, setAscending] = useState(true);
+  const [orderBy, setOrderBy] = useState('traitementState.encours');
+  const [ascending, setAscending] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState(null);
@@ -143,9 +144,13 @@ const handleSearchChange = (event) => {
             <th className="cursor-pointer py-2 px-4 text-left font-semibold" onClick={() => handleSort('traitementState.encours')}>
               En Cours
             </th>
+            <th className="cursor-pointer py-2 px-4 text-left font-semibold">
+              Progression du Traitement
+            </th>
             <th className="cursor-pointer py-2 px-4 text-left font-semibold" onClick={() => handleSort('traitementState.contention')}>
               Contention à Faire
             </th>
+            
             <th className="py-2 px-4"></th>
           </tr>
         </thead>
@@ -164,6 +169,15 @@ const handleSearchChange = (event) => {
   <div className="flex items-center justify-center">
     {patient.traitementState.encours ? <FaCheck className="text-green-500" /> : ''} 
   </div>
+</td>
+<td className="py-2 px-4">
+  {patient.traitementState.encours ? 
+    <ProgressPatient 
+      nombreDAligneurs={patient.traitementState.nombreDAligneurs}
+      aligneurActuel={patient.traitementState.aligneurActuel}
+    />
+    : null
+  }
 </td>
 <td className="py-2 px-4">
   <div className="flex items-center justify-center">

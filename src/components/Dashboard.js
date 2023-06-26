@@ -31,6 +31,25 @@ export default function Dashboard({ children }) {
     setIsMenuOpen(!isMenuOpen);
   }, [isMenuOpen]);
 
+  const handleExportClick = async () => {
+    try {
+      const res = await fetch('/api/patients/export');  
+      const blob = await res.blob();
+
+      const date = new Date();
+      const dateStr = new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric'}).format(date).replace(/\//g, '-');
+
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `patients_${dateStr}.csv`
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (error) {
+      console.log('Error exporting data:', error);
+    }
+  }
+
   return (
     <div className="min-h-screen flex flex-col items-center bg-gray-50">
       <nav className="w-full bg-white shadow-md">
@@ -71,7 +90,7 @@ export default function Dashboard({ children }) {
         transition={{ duration: 0.5 }}
       >
         <h2 className="text-3xl text-blue-600 text-center mb-8">Dashboard</h2>
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-8 space-x-1.5">
           <Link href="/dashboard/new">
             <button
               className="px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-md transition duration-150 ease-in-out"
@@ -79,6 +98,12 @@ export default function Dashboard({ children }) {
               Nouveau Patient
             </button>
           </Link>
+          <button
+        onClick={handleExportClick}
+        className="px-4 py-2 text-white bg-green-600 hover:bg-green-700 rounded-lg shadow-md transition duration-150 ease-in-out"
+      >
+        Exporter Données
+      </button>
         </div>
         {children}
       </motion.div>

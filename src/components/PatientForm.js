@@ -66,6 +66,12 @@ const PatientForm = ({ onSubmit, onCancel, personalInfo: initialPersonalInfo, me
       reeducation_deglutition_infantile: false,
       dentiste: false,
     },
+    encours: '',
+    contention: '',
+    aligneurActuel: '',
+    nombreDAligneurs: '',
+    jourDePort: '',
+    aligneurRDV: '',
   });
 
   const handleSubmit = (e) => {
