@@ -90,10 +90,6 @@ const handleSearchChange = (event) => {
 };
 
 
-
-  const sortedPatients = Array.isArray(filteredPatients) ? filteredPatients.sort(sortPatients) : [];
-
-
   const handleDeletePatient = async (patientId) => {
     try {
       const response = await fetch(`/api/patients/${patientId}`, {
