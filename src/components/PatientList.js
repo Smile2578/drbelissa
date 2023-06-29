@@ -10,12 +10,12 @@ import ProgressPatient from './ProgressPatient';
 
 const PatientList = () => {
   const [patients, setPatients] = useState([]);
-  const [orderBy, setOrderBy] = useState('traitementState.lastName');
-  const [ascending, setAscending] = useState(false);
+  const [orderBy, setOrderBy] = useState('traitementState.encours');
+  const [ascending, setAscending] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState(null);
-  const [onlyShowEnCours, setOnlyShowEnCours] = useState(false);
+
 
   Modal.setAppElement('#__next');
 
@@ -68,22 +68,28 @@ const handleSearchChange = (event) => {
   };
 
   const sortPatients = (a, b) => {
-    const valueA = orderBy.split('.').reduce((o, i) => o[i], a);
-    const valueB = orderBy.split('.').reduce((o, i) => o[i], b);
-
-    if (valueA < valueB) {
-      return ascending ? -1 : 1;
+  if (orderBy === 'traitementState.encours') {
+    if (a.traitementState.encours === 'Traitement en cours' && b.traitementState.encours !== 'Traitement en cours') {
+      return -1; // a comes first
     }
-    if (valueA > valueB) {
-      return ascending ? 1 : -1;
+    if (b.traitementState.encours === 'Traitement en cours' && a.traitementState.encours !== 'Traitement en cours') {
+      return 1;  // b comes first
     }
-    return 0;
-  };
+  }
+  
+  const valueA = orderBy.split('.').reduce((o, i) => o[i], a);
+  const valueB = orderBy.split('.').reduce((o, i) => o[i], b);
 
- const filteredPatients = patients.filter(patient => 
-  (patient.personalInfo.firstName.toLowerCase() + ' ' + patient.personalInfo.lastName.toLowerCase()).includes(searchTerm.toLowerCase()) &&
-  (!onlyShowEnCours || patient.traitementState.encours)
-);
+  if (valueA < valueB) {
+    return ascending ? -1 : 1;
+  }
+  if (valueA > valueB) {
+    return ascending ? 1 : -1;
+  }
+  return 0;
+};
+
+
 
   const sortedPatients = Array.isArray(filteredPatients) ? filteredPatients.sort(sortPatients) : [];
 
