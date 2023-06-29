@@ -336,22 +336,6 @@ const handleEncoursChange = (e) => {
         />
       </div>
 
-
-  /* Contention ≈
-    <div>
-      <label className="inline-flex items-center text-gray-700">
-        <input
-          type="checkbox"
-          className="form-checkbox text-indigo-600"
-          checked={contention}
-          onChange={handleContentionChange}
-        />
-        <span className="ml-2">Contention à Faire</span>
-      </label>
-    </div>
-
-    */
-            
   </div>
 
   );
