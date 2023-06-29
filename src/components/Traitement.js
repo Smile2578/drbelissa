@@ -276,7 +276,7 @@ const handleEncoursChange = (e) => {
      <div className="flex flex-col space-y-2">
     <label className="text-gray-600 font-semibold">Status</label>
     <select 
-        className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" 
+        className="block p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-black" 
         value={encours} 
         onChange={e => setEncours(e.target.value)}
     >
