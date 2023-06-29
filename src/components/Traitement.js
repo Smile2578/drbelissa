@@ -17,21 +17,7 @@ const Traitement = ({ traitementState, setTraitementState }) => {
   const setJourDePort = (value) => setTraitementState({ ...traitementState, jourDePort: value });
   const setAligneurRDV = (value) => setTraitementState({ ...traitementState, aligneurRDV: value });
 
-  useState({
-    soinAPrevoir: '',
-    typeDeTraitement: '',
-    duree: '',
-    planDeTraitement: '',
-    accessoires: {},
-    consignes: {},
-    encours: false, 
-    contention: false, 
-    aligneurRDV: '', 
-    nombreDAligneurs: '',
-    aligneurActuel: '',
-    jourDePort: '',
-  });
-
+  
 
 const handleEncoursChange = (e) => {
     setEncours(e.target.checked);
