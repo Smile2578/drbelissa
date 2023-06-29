@@ -71,7 +71,7 @@ const Traitement = ({ traitementState, setTraitementState }) => {
       },
       encours: '',
       aligneurRDV: '',
-      contention: '',
+      contention: false,
       nombreDAligneurs: '',
       aligneurActuel: '',
       jourDePort: '',
