@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Modal from 'react-modal';
-import { FaCheck, FaTrash } from 'react-icons/fa';
+import { FaCheck, FaTrash, FaExclamationTriangle } from 'react-icons/fa';
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import ProgressPatient from './ProgressPatient';
@@ -144,15 +144,13 @@ const handleSearchChange = (event) => {
               Durée
             </th>
             <th className="cursor-pointer py-2 px-4 text-left font-semibold" onClick={() => handleSort('traitementState.encours')}>
-              <button onClick={() => setOnlyShowEnCours(!onlyShowEnCours)}>
-              {onlyShowEnCours ? "Voir Tous" : "En Cours"}
-              </button>
+              Status
             </th>
             <th className="cursor-pointer py-2 px-4 text-left font-semibold">
               Progression du Traitement
             </th>
             <th className="cursor-pointer py-2 px-4 text-left font-semibold" onClick={() => handleSort('traitementState.contention')}>
-              Contention à Faire
+              Contention
             </th>
             
             <th className="py-2 px-4"></th>
@@ -170,10 +168,8 @@ const handleSearchChange = (event) => {
               <td className="py-2 px-4">{patient.traitementState.typeDeTraitement}</td>
               <td className="py-2 px-4">{patient.traitementState.duree}</td>
               <td className="py-2 px-4">
-  <div className="flex items-center justify-center">
-    {patient.traitementState.encours ? <FaCheck className="text-green-500" /> : ''} 
-  </div>
-</td>
+        {patient.traitementState.encours}  
+      </td>
 <td className="py-2 px-4">
   {patient.traitementState.encours ? 
     <ProgressPatient 
@@ -184,10 +180,12 @@ const handleSearchChange = (event) => {
   }
 </td>
 <td className="py-2 px-4">
-  <div className="flex items-center justify-center">
-    {patient.traitementState.contention ? <FaCheck className="text-green-500" /> : ''}
-  </div>
-</td>
+        <div className="flex items-center justify-center">
+          {patient.traitementState.encours === 'Traitement fini - Contention' && <FaExclamationTriangle className="text-yellow-500" />}
+          {patient.traitementState.encours === 'Contention prête' && <FaCheck className="text-green-500" />}
+        </div>
+      </td>
+            
 <td className="py-2 px-4">
   <div className="flex items-center justify-center">
     <button className="text-red-500 hover:text-red-700" onClick={() => submit(patient._id)}>
