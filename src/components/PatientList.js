@@ -171,7 +171,7 @@ const handleSearchChange = (event) => {
         {patient.traitementState.encours}  
       </td>
 <td className="py-2 px-4">
-  {patient.traitementState.encours ? 
+  {patient.traitementState.encours === 'Traitement en cours' ? 
     <ProgressPatient 
       nombreDAligneurs={patient.traitementState.nombreDAligneurs}
       aligneurActuel={patient.traitementState.aligneurActuel}
