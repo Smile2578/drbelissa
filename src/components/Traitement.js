@@ -33,14 +33,13 @@ const Traitement = ({ traitementState, setTraitementState }) => {
   });
 
 
-  const handleEncoursChange = (e) => {
-    setTraitementState(prevState => ({...prevState, encours: e.target.checked}));
+const handleEncoursChange = (e) => {
+    setEncours(e.target.checked);
   };
   
   const handleContentionChange = (e) => {
-    setTraitementState(prevState => ({...prevState, contention: e.target.checked}));
+    setContention(e.target.checked);
   };
-
   
   
   const handleSubmit = (e) => {
