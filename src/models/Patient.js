@@ -118,8 +118,8 @@ const PatientSchema = new mongoose.Schema({
       greffe: { type: Boolean, default: null },
       implant: { type: Boolean, default: null },
      },
-     encours: { type: Boolean, default: false },
-     contention: { type: Boolean, default: false },
+     encours: { type: String, default: null },
+     /* contention: { type: Boolean, default: false }, */
      aligneurRDV: { type: Number, default: null },
      nombreDAligneurs: { type: Number, default: null }, 
      aligneurActuel: { type: Number, default: null }, 
