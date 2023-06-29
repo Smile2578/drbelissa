@@ -54,9 +54,8 @@ const handleEncoursChange = (e) => {
         greffe: false,
         frenectomie: false,
       },
-      encours: false,
+      encours: '',
       aligneurRDV: false,
-      contention: '',
       nombreDAligneurs: '',
       aligneurActuel: '',
       jourDePort: '',
@@ -276,12 +275,15 @@ const handleEncoursChange = (e) => {
                 {/* Traitement En Cours */}
       <div>
         <label className="inline-flex items-center text-gray-700">
-          <input
-            type="checkbox"
-            className="form-checkbox text-indigo-600"
-            checked={encours}
-            onChange={handleEncoursChange}
-          />
+          <select value={encours} onChange={e => setEncours(e.target.value)}>
+  <option value="Devis donné">Devis donné</option>
+  <option value="Devis accepté">Devis accepté</option>
+  <option value="Clincheck en cours">Clincheck en cours</option>
+  <option value="Traitement en cours">Traitement en cours</option>
+  <option value="Finition en cours">Finition en cours</option>
+  <option value="Traitement fini - Contention">Traitement fini - Contention</option>
+  <option value="Contention prête">Contention Prête</option>
+            </select>
           <span className="ml-2">Traitement en Cours</span>
         </label>
       </div>
@@ -335,7 +337,7 @@ const handleEncoursChange = (e) => {
       </div>
 
 
-    {/* Contention */}
+  /* Contention ≈
     <div>
       <label className="inline-flex items-center text-gray-700">
         <input
@@ -347,6 +349,9 @@ const handleEncoursChange = (e) => {
         <span className="ml-2">Contention à Faire</span>
       </label>
     </div>
+
+    */
+            
   </div>
 
   );
