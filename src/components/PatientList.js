@@ -10,7 +10,7 @@ import ProgressPatient from './ProgressPatient';
 
 const PatientList = () => {
   const [patients, setPatients] = useState([]);
-  const [orderBy, setOrderBy] = useState('traitementState.encours');
+  const [orderBy, setOrderBy] = useState('traitementState.lastName');
   const [ascending, setAscending] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -167,9 +167,8 @@ const handleSearchChange = (event) => {
               <td className="py-2 px-4">{patient.examenIntraOral.classeSquelettique}</td>
               <td className="py-2 px-4">{patient.traitementState.typeDeTraitement}</td>
               <td className="py-2 px-4">{patient.traitementState.duree}</td>
-              <td className="py-2 px-4">
-        {patient.traitementState.encours}  
-      </td>
+              <td className="py-2 px-4">{patient.traitementState.encours}</td>
+        
 <td className="py-2 px-4">
   {patient.traitementState.encours === 'Traitement en cours' ? 
     <ProgressPatient 
@@ -179,6 +178,7 @@ const handleSearchChange = (event) => {
     : null
   }
 </td>
+  
 <td className="py-2 px-4">
         <div className="flex items-center justify-center">
           {patient.traitementState.encours === 'Traitement fini - Contention' && <FaExclamationTriangle className="text-yellow-500" />}
