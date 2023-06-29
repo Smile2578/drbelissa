@@ -89,6 +89,18 @@ const handleSearchChange = (event) => {
   return 0;
 };
 
+  const [searchTerm, setSearchTerm] = useState('');
+const handleSearchChange = (event) => {
+  setSearchTerm(event.target.value);
+};
+
+
+const filteredPatients = patients.filter(patient => {
+  const { firstName, lastName } = patient.personalInfo;
+  return (firstName + ' ' + lastName).toLowerCase().includes(searchTerm.toLowerCase());
+});
+
+const sortedPatients = Array.isArray(filteredPatients) ? filteredPatients.sort(sortPatients) : [];
 
   const handleDeletePatient = async (patientId) => {
     try {
