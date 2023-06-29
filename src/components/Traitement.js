@@ -274,7 +274,7 @@ const handleEncoursChange = (e) => {
             </div>
                 {/* Traitement En Cours */}
       <div>
-        <label className="inline-flex items-center text-gray-700">
+        <label className="inline-flex items-center text-gray-700"> Status </label>
           <select value={encours} onChange={e => setEncours(e.target.value)}>
   <option value="Devis donné">Devis donné</option>
   <option value="Devis accepté">Devis accepté</option>
@@ -285,7 +285,7 @@ const handleEncoursChange = (e) => {
   <option value="Contention prête">Contention Prête</option>
             </select>
           <span className="ml-2">Traitement en Cours</span>
-        </label>
+        
       </div>
 
       {/* Nombre d'aligneurs */}
