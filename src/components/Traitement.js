@@ -273,20 +273,22 @@ const handleEncoursChange = (e) => {
               </div>
             </div>
                 {/* Traitement En Cours */}
-      <div>
-        <label className="inline-flex items-center text-gray-700"> Status </label>
-          <select value={encours} onChange={e => setEncours(e.target.value)}>
-  <option value="Devis donné">Devis donné</option>
-  <option value="Devis accepté">Devis accepté</option>
-  <option value="Clincheck en cours">Clincheck en cours</option>
-  <option value="Traitement en cours">Traitement en cours</option>
-  <option value="Finition en cours">Finition en cours</option>
-  <option value="Traitement fini - Contention">Traitement fini - Contention</option>
-  <option value="Contention prête">Contention Prête</option>
-            </select>
-          <span className="ml-2">Traitement en Cours</span>
-        
-      </div>
+     <div className="flex flex-col space-y-2">
+    <label className="text-gray-600 font-semibold">Status</label>
+    <select 
+        className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" 
+        value={encours} 
+        onChange={e => setEncours(e.target.value)}
+    >
+        <option value="Devis donné">Devis donné</option>
+        <option value="Clincheck en cours">Clincheck en cours</option>
+        <option value="Traitement en cours">Traitement en cours</option>
+        <option value="Finition en cours">Finition en cours</option>
+        <option value="Traitement fini - Contention">Traitement fini - Contention</option>
+        <option value="Contention prête">Contention Prête</option>
+    </select>
+</div>
+
 
       {/* Nombre d'aligneurs */}
       <div>
