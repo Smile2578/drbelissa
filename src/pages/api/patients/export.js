@@ -13,7 +13,7 @@ const exportPatients = async (req, res) => {
         'Date de Naissance': formatDate(patient.personalInfo.dateOfBirth),
         'Classe Squelettique': patient.examenIntraOral.classeSquelettique,
         'Traitement': patient.traitementState.typeDeTraitement,
-        'En Cours': patient.traitementState.encours ? '✔' : '✘'
+        'En Cours': patient.traitementState.encours,
       }));
 
       const json2csvParser = new Parser();
