@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-
 let isConnected;
 
 const MONGODB_URI = process.env.MONGODB_URI;
