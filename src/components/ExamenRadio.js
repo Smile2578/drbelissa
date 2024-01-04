@@ -38,7 +38,7 @@ const ExamenRadio = ({ examenRadio, setExamenRadio }) => {
         {/* Examen Radio - Inclusion */}
         <div className="mb-4">
           <label value={inclusion} htmlFor="inclusion" className="block text-sm font-medium text-gray-700 mb-2">
-            Inclusion
+            Prothèse Fixe / Implant
           </label>
           <ToothSchema onTeethChange={setInclusion} initialTeeth={memoInclusion} />
         </div>
