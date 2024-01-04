@@ -175,7 +175,7 @@ const PatientList = () => {
                     {patient.traitementState.encours === 'Traitement en cours' ? 
                       <ProgressPatient 
                         nombreDAligneurs={patient.traitementState.nombreDAligneurs}
-                        aligneurActuel={patient.traitementState.aligneurActuel}
+                        aligneurActuel={patient.traitementState.aligneurRDV}
                       />
                       : null
                     }
